@@ -1,0 +1,6 @@
+---
+  - name: Sync Snapraid
+    command: /usr/bin/snapraid sync
+
+  - name: Scrub Snapraid (Might take a while. Lots of shit in here!)
+    command: /usr/bin/snapraid scrub
