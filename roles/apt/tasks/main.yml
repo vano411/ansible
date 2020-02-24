@@ -1,7 +1,13 @@
 ---
-- name: Update, upgrade, clean up, do all that shit
+- name: Update cache
+  apt:
+    update_cache: yes
+    
+- name: Upgrade apps where available
   apt:
     upgrade: full
-    update_cache: yes
+    
+- name: Clean up and remove old stuff
+  apt:
     autoclean: yes
     autoremove: yes
