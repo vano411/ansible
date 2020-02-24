@@ -1,6 +1,6 @@
 ---
-  - name: Sync Snapraid
+  - name: Sync Array
     command: /usr/bin/snapraid sync
 
-  - name: Scrub Snapraid (Might take a while. Lots of shit in here!)
-    command: /usr/bin/snapraid scrub
+  - name: Scrub array for parity errors. Default is 1% of files >20 days old
+    command: /usr/bin/snapraid -p 1 -o 20 scrub
