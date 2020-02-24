@@ -4,26 +4,12 @@
   gather_facts: no
   become: true
   
+  roles:
+   - apt
+   - plex
+   - snapraid
+  
   tasks:
-
-  - name: Update, upgrade, clean up, do all that shit
-    apt:
-      upgrade: full
-      update_cache: yes
-      autoclean: yes
-      autoremove: yes
-
-  - name: Make sure Plex is started! Because apparently the updater doesn't do that.
-    service:
-      name: plexmediaserver
-      state: started
-      
-  - name: Sync Snapraid
-    command: /usr/bin/snapraid sync
-
-#  - name: Scrub Snapraid (Might take a while. Lots of shit in here!)
-#    command: /usr/bin/snapraid scrub
-
   - name: Reboot if required
     command: shutdown -r now
     args:
