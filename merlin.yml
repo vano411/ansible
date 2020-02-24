@@ -7,7 +7,6 @@
   roles:
    - apt
    - plex
-   - snapraid
   
   tasks:
   - name: Reboot if required
