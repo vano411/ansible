@@ -1,0 +1,38 @@
+---
+- hosts: all
+
+  gather_facts: no
+  become: true
+  
+  tasks:
+
+  - name: Update, upgrade, clean up, do all that shit
+    apt:
+      upgrade: full
+      update_cache: yes
+      autoclean: yes
+      autoremove: yes
+
+  - name: Make sure Plex is started! Because apparently the updater doesn't do that.
+    service:
+      name: plexmediaserver
+      state: started
+      
+  - name: Sync Snapraid
+    command: /usr/bin/snapraid sync
+
+#  - name: Scrub Snapraid (Might take a while. Lots of shit in here!)
+#    command: /usr/bin/snapraid scrub
+
+  - name: Reboot if required
+    command: shutdown -r now
+    args:
+      removes: /var/run/reboot-required
+    async: 300
+    poll: 0
+    ignore_errors: true
+
+  - name: Wait for machine to respond. Should take 5 seconds if it didn't reboot.
+    wait_for_connection:
+      delay: 5
+      timeout: 300
