@@ -1,0 +1,7 @@
+---
+- name: Update, upgrade, clean up, do all that shit
+  apt:
+    upgrade: full
+    update_cache: yes
+    autoclean: yes
+    autoremove: yes
