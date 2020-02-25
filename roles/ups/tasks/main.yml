@@ -2,5 +2,5 @@
   - name: Test the UPS
     command: /usr/sbin/pwrstat -test
 
-  - name: Display test results
-    command: /usr/sbin/pwrstat -status | grep Test
+  - name: Display UPS status and test results
+    command: /usr/sbin/pwrstat -status
