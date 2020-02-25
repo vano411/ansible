@@ -6,20 +6,6 @@
   
   roles:
    - apt
-   - plex
+   - rebooter
    - snapraid
    - ups
-  
-  tasks:
-  - name: Reboot if required
-    command: shutdown -r now
-    args:
-      removes: /var/run/reboot-required
-    async: 300
-    poll: 0
-    ignore_errors: true
-
-  - name: Wait for machine to respond. Should take 5 seconds if it didn't reboot.
-    wait_for_connection:
-      delay: 5
-      timeout: 300
