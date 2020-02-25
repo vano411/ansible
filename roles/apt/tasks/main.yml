@@ -6,7 +6,12 @@
 - name: Upgrade apps where available
   apt:
     upgrade: full
-    
+
+- name: Make sure Plex is started! Because apparently the updater doesn't do that.
+  service:
+    name: plexmediaserver
+    state: started
+
 - name: Clean up and remove old stuff
   apt:
     autoclean: yes
