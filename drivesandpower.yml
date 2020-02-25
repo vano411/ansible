@@ -1,0 +1,9 @@
+---
+- hosts: all
+
+  gather_facts: no
+  become: true
+  
+  roles:
+  - snapraid
+  - ups
