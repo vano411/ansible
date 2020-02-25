@@ -8,6 +8,7 @@
    - apt
    - plex
    - snapraid
+   - ups
   
   tasks:
   - name: Reboot if required
