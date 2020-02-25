@@ -1,6 +1,6 @@
 ---
-  - name: Test the UPS
-    command: /usr/sbin/pwrstat -test
+- name: Test the UPS
+  command: /usr/sbin/pwrstat -test
 
-  - name: Display UPS status and test results
-    command: /usr/sbin/pwrstat -status
+- name: Display UPS status and test results
+  command: /usr/sbin/pwrstat -status
