@@ -7,3 +7,4 @@
   roles:
   - apt
   - plex
+  - rebooter
