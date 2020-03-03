@@ -1,6 +1,10 @@
 ---
-- name: Test the UPS
+- name: Begin UPS test (don't freak out at the noise!)
   command: /usr/sbin/pwrstat -test
 
-- name: Display UPS status and test results
+- name: Wait for test to finish
+  wait_for:
+    timeout: 60
+
+- name: Print UPS status and test results (check stdout)
   command: /usr/sbin/pwrstat -status

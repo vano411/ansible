@@ -1,0 +1,10 @@
+---
+- hosts: all
+
+  gather_facts: no
+  become: true
+  
+  roles:
+   - apt
+   - rebooter
+   - snapraid
