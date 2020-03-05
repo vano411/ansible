@@ -1,5 +1,5 @@
 ---
-- hosts: all
+- hosts: Merlin
 
   gather_facts: no
   become: true
