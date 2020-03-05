@@ -8,5 +8,5 @@
     timeout: 60
   when: upstest == Yes
 
-- name: Print UPS status and test results (check stdout)
+- name: Print UPS status and last test results (check stdout)
   command: /usr/sbin/pwrstat -status
