@@ -1,12 +1,12 @@
 ---
 - name: Begin UPS test (don't freak out at the noise!)
   command: /usr/sbin/pwrstat -test
-  when: upstest == Yes
+  when: upstest == "Yes"
 
 - name: Wait for test to finish
   wait_for:
     timeout: 60
-  when: upstest == Yes
+  when: upstest == "Yes"
 
 - name: Print UPS status and last test results (check stdout)
   command: /usr/sbin/pwrstat -status
