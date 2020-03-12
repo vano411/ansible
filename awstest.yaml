@@ -12,5 +12,5 @@
       wait: yes
       group: test
       count: 1
-      vpc_subnet_id: vpc-c6e107a0
+      vpc_subnet_id: subnet-a0e332c6
       assign_public_ip: yes
