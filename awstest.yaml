@@ -1,13 +1,15 @@
-hosts: localhost
-
-tasks:
-- name: Launch instance
-  ec2:
-    key_name: VanAWS
-    instance_type: t2.micro
-    image: ami-09a7fe78668f1e2c0
-    wait: yes
-    group: test
-    count: 1
-    vpc_subnet_id: vpc-c6e107a0
-    assign_public_ip: yes
+---
+- hosts: localhost
+  gather_facts: no
+  
+  tasks:
+  - name: Launch instance
+    ec2:
+      key_name: VanAWS
+      instance_type: t2.micro
+      image: ami-09a7fe78668f1e2c0
+      wait: yes
+      group: test
+      count: 1
+      vpc_subnet_id: vpc-c6e107a0
+      assign_public_ip: yes
