@@ -5,7 +5,7 @@
   tasks:
   - name: Launch instance
     ec2:
-      key_name: VanAWS
+      key_name: AWS
       instance_type: t2.micro
       image: ami-09a7fe78668f1e2c0
       region: us-west-1
