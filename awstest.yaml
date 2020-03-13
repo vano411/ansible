@@ -31,8 +31,9 @@
       state: started
     loop: "{{ ec2.instances }}"
 
-- hosts: "{{ item.public_dns_name }}"
+- hosts: launched
   become: yes
+  become_method: sudo
 
   tasks:
   - name: Update the packages
