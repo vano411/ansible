@@ -14,6 +14,7 @@
       count: 1
       vpc_subnet_id: subnet-a0e332c6
       assign_public_ip: yes
+    register: ec2
 
   - name: Add new instance to host group
     add_host:
