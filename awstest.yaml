@@ -30,3 +30,12 @@
       timeout: 300
       state: started
     loop: "{{ ec2.instances }}"
+
+- hosts: "{{ item.public_dns_name }}"
+  become: yes
+
+  tasks:
+  - name: Update the packages
+  - yum:
+      name: "*"
+      state: latest
