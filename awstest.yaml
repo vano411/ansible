@@ -23,8 +23,8 @@
     loop: "{{ ec2.instances }}"
 
   - name: Wait for SSH to come up
-    delegate_to: "{{ item.public_dns_name }}"
+    delegate_to: localhost
     wait_for_connection:
-      delay: 60
-      timeout: 320
+      delay: 30
+      timeout: 120
     loop: "{{ ec2.instances }}"
