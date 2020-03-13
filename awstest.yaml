@@ -23,4 +23,10 @@
     loop: "{{ ec2.instances }}"
 
   - name: Wait for SSH to come up
-    wait_for: host="{{ item.public_dns_name }}" port=22 delay=30 timeout=520 state=started
+    wait_for: 
+      host: "{{ item.public_dns_name }}"
+      port: 22
+      delay: 30
+      timeout: 300
+      state: started
+    loop: "{{ ec2.instances }}"
