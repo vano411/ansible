@@ -32,6 +32,7 @@
     loop: "{{ ec2.instances }}"
 
 - hosts: launched
+  ansible_user: ec2_user
   become: yes
   become_method: sudo
 
