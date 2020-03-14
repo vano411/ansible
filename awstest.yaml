@@ -18,8 +18,8 @@
 
   - name: Add new instance to host group
     add_host:
-      hostname: "{{ item.public_ip }}"
-      groupname: launched
+      name: "{{ item.public_ip }}"
+      group: launched
     loop: "{{ ec2.instances }}"
 
   - name: Wait for SSH to come up
@@ -32,13 +32,16 @@
     loop: "{{ ec2.instances }}"
 
 - hosts: launched
-  remote_user: ec2_user
-  ansible_ssh_private_key_file: AWStest
-  become: yes
-  become_method: sudo
 
-  tasks:
+- tasks:
   - name: Update the packages
     yum:
       name: "*"
       state: latest
+    loop: "{{ ec2.instances }}"
+
+  - name: Install MariaDB and PHP
+    yum:
+      name: amazon-linux-extras
+      state: present
+    loop: "{{ ec2.instances }}"
