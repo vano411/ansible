@@ -32,7 +32,7 @@
     loop: "{{ ec2.instances }}"
 
 - hosts: launched
-
+  user: ec2-user
 - tasks:
   - name: Update the packages
     yum:
