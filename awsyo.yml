@@ -9,4 +9,3 @@
     yum:
       name: "*"
       state: latest
-    
