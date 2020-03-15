@@ -1,5 +1,5 @@
 ---
-- host: 18.144.69.234
+- hosts: 18.144.69.234
   gather_facts: no
   become: yes
   become_method: sudo
