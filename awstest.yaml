@@ -39,9 +39,3 @@
       name: "*"
       state: latest
     loop: "{{ ec2.instances }}"
-
-  - name: Install MariaDB and PHP
-    yum:
-      name: amazon-linux-extras
-      state: present
-    loop: "{{ ec2.instances }}"
