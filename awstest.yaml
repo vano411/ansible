@@ -5,7 +5,7 @@
   tasks:
   - name: Launch instance
     ec2:
-      key_name: AWStest
+      key_name: AWStest2
       instance_type: t2.micro
       image: ami-09a7fe78668f1e2c0
       region: us-west-1
@@ -33,9 +33,11 @@
 
 - hosts: launched
   user: ec2-user
+  become: yes
+  become_method: sudo
+
 - tasks:
   - name: Update the packages
     yum:
       name: "*"
       state: latest
-    loop: "{{ ec2.instances }}"
