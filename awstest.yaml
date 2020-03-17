@@ -60,7 +60,3 @@
   
   - name: Create a test file in /var/www
     shell: echo "<?php phpinfo(); ?>" > /var/www/html/phpinfo.php
-
-  - name: Check that web server returns status 200
-    uri: 
-      url: http://{{ item.public_dns_name }}/phpinfo.php
