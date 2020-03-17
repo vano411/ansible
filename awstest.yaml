@@ -10,7 +10,7 @@
       image: ami-09a7fe78668f1e2c0
       region: us-west-1
       wait: yes
-      group: ['default', 'SSH']
+      group: ['default', 'SSH', 'HTTPtest']
       count: 1
       vpc_subnet_id: subnet-a0e332c6
       assign_public_ip: yes
@@ -41,3 +41,21 @@
     yum:
       name: "*"
       state: latest
+
+  - name: Install packages for LAMP server
+    yum:
+      name:
+        - httpd24
+        - php72
+        - mysql157-server
+        - php72-mysqlnd
+      state: present
+
+  - name: Start httpd service and ensure it starts up with each boot
+    service:
+      name: httpd
+      state: started
+      enabled: yes
+  
+  - name: Create a test file in /var/www
+    shell: echo "<?php phpinfo(); ?>" > /var/www/html/phpinfo.php
