@@ -35,7 +35,7 @@
   user: ec2-user
   become: yes
   become_method: sudo
-  gather_facts: no
+  gather_facts: yes
 
   tasks:
   - name: Update the packages
@@ -43,7 +43,7 @@
       name: "*"
       state: latest
 
-  - name: Install packages for LAMP server
+  - name: Install packages for LAMP web server
     yum:
       name:
         - httpd24
@@ -60,3 +60,7 @@
   
   - name: Create a test file in /var/www
     shell: echo "<?php phpinfo(); ?>" > /var/www/html/phpinfo.php
+
+  - name: Check that web server returns status 200
+    uri: 
+      url: http://"{{ ansible_facts['nodename'] }}"/phpinfo.php
