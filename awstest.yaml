@@ -35,6 +35,7 @@
   user: ec2-user
   become: yes
   become_method: sudo
+  gather_facts: no
 
   tasks:
   - name: Update the packages
