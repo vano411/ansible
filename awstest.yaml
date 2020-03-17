@@ -7,7 +7,7 @@
     ec2:
       key_name: AWStest2
       instance_type: t2.micro
-      image: ami-09a7fe78668f1e2c0
+      image: ami-021bb9f371690f97a
       region: us-west-1
       wait: yes
       group: ['default', 'SSH', 'HTTPtest']
