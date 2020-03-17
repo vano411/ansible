@@ -47,7 +47,7 @@
       name:
         - httpd24
         - php72
-        - mysql157-server
+        - mysql57-server
         - php72-mysqlnd
       state: present
 
