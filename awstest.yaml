@@ -63,4 +63,4 @@
 
   - name: Check that web server returns status 200
     uri: 
-      url: http://{{ item.public_dns_name'] }}/phpinfo.php
+      url: http://{{ item.public_dns_name }}/phpinfo.php
