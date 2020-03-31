@@ -43,20 +43,10 @@
       name: "*"
       state: latest
 
-  - name: Install packages for LAMP web server
-    yum:
-      name:
-        - httpd24
-        - php72
-        - mysql57-server
-        - php72-mysqlnd
-      state: present
-
-  - name: Start httpd service and ensure it starts up with each boot
-    service:
-      name: httpd
-      state: started
-      enabled: yes
-  
-  - name: Create a test file in /var/www
-    shell: echo "<?php phpinfo(); ?>" > /var/www/html/phpinfo.php
+- hosts: localhost
+  gather_facts: no
+  tasks:
+    - name: Terminate instances that were previously launched
+      ec2:
+        state: 'absent'
+        instance_ids: '{{ ec2.instance_ids }}'
