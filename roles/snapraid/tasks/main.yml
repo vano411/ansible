@@ -6,8 +6,8 @@
 
   - name: Sync Array
     command: /usr/bin/snapraid sync
-    when: arraysync == "Yes" and filesFound.matched = 0
+    when: arraysync == "Yes" and filesFound.matched = "0"
 
   - name: Scrub array for parity errors. Looking at 1% of files >20 days old
     command: /usr/bin/snapraid -p 1 -o 20 scrub
-    when: arrayscrub == "Yes" and filesFound.matched = 0
+    when: arrayscrub == "Yes" and filesFound.matched = "0"
