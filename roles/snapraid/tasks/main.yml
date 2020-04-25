@@ -1,8 +1,13 @@
 ---
+  - name: Check to see if Downloads folder is empty
+    find:
+      paths: '/mnt/Storage/Misc. Data/Deluge
+    register: filesFound
+
   - name: Sync Array
     command: /usr/bin/snapraid sync
-    when: arraysync == "Yes"
+    when: arraysync == "Yes" and filesFound.matched = 0
 
   - name: Scrub array for parity errors. Looking at 1% of files >20 days old
     command: /usr/bin/snapraid -p 1 -o 20 scrub
-    when: arrayscrub == "Yes"
+    when: arrayscrub == "Yes" and filesFound.matched = 0
