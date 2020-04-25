@@ -1,5 +1,5 @@
 ---
-- hosts: Merlin
+- hosts: Gandalf
 
   gather_facts: no
   become: true
