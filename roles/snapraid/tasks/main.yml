@@ -2,6 +2,7 @@
   - name: Check contents of Downloads folder
     find:
       paths: '/mnt/storage/MiscData/Downloads/inprog'
+      pattern: '*.*'
     register: filesFound
 
   - name: Sync Array
