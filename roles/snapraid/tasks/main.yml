@@ -1,10 +1,18 @@
 ---
-  - name: Check Downloads folder for active files/directories
+  - name: Check for active downloads
     find:
       paths: '/mnt/storage/MiscData/Downloads/inprog'
       pattern: '*.*'
       recurse: yes
     register: filesFound
+    
+  - debug:
+      msg: No downloads in progress. Proceeding with SnapRaid maintenance
+    when: filesFound.matched < 1
+
+  - debug:
+      msg: Downloading is in progress. SnapRaid will NOT be synced and/or scrubbed!
+    when: filesFound.matched > 0
 
   - name: Sync Array
     command: /usr/bin/snapraid sync
