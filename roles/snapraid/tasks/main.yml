@@ -1,8 +1,9 @@
 ---
-  - name: Check contents of Downloads folder
+  - name: Check Downloads folder for active files/directories
     find:
       paths: '/mnt/storage/MiscData/Downloads/inprog'
       pattern: '*.*'
+      recurse: yes
     register: filesFound
 
   - name: Sync Array
