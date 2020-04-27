@@ -1,7 +1,7 @@
 ---
   - name: Check contents of Downloads folder
     find:
-      paths: '/mnt/storage/Misc.\ Data/Deluge/'
+      paths: '/mnt/storage/MiscData/Downloads/inprog'
     register: filesFound
 
   - name: Sync Array
