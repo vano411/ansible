@@ -5,13 +5,10 @@
   become: true
   
   roles:
-   - apt
-   - ups
-   
-  roles:
-   - snapraid
-  when: arraysync == "Yes" or arrayscrub == "Yes"
-   
-  roles:
-   - rebooter
-  when: rebootvar == "Yes"
+    - role: apt
+    - role: ups
+      when: upstest == "Yes"
+    - role: snapraid
+      when: arraysync == "Yes" or arrayscrub == "Yes"
+    - role: rebooter
+      when: rebootvar == "Yes"
