@@ -6,10 +6,8 @@
   async: 300
   poll: 0
   ignore_errors: true
-  when: rebootvar == "Yes"
 
 - name: Wait for machine to respond.
   wait_for_connection:
     delay: 5
     timeout: 300
-  when: rebootvar == "Yes"
