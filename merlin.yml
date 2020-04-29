@@ -6,6 +6,12 @@
   
   roles:
    - apt
-   - rebooter
-   - snapraid
    - ups
+   
+  roles:
+   - snapraid
+  when: arraysync == "Yes" or arrayscrub == "Yes"
+   
+  roles:
+   - rebooter
+  when: rebootvar == "Yes"
