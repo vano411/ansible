@@ -8,7 +8,7 @@
 
 - name: Reboot if required
   command: shutdown -r now
-  when: filesFound < 1
+  when: filesFound.matched < 1
   args:
     removes: /var/run/reboot-required
   async: 300
