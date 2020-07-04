@@ -1,6 +1,14 @@
 ---
+- name: Check for active downloads
+  find:
+    paths: '/mnt/storage/MiscData/Downloads/inprog'
+    pattern: '*.*'
+    recurse: yes
+  register: filesFound
+
 - name: Reboot if required
   command: shutdown -r now
+  when: filesFound < 1
   args:
     removes: /var/run/reboot-required
   async: 300
