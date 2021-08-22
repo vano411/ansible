@@ -4,3 +4,4 @@
     file_root: "{{root}}"
     permission: private
     storage_class: "DEEP_ARCHIVE"
+  become: no
