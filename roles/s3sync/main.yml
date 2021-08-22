@@ -1,0 +1,6 @@
+- name: S3 Sync
+  community.aws.s3_sync:
+    bucket: "{{bucket}}"
+    file_root: "{{root}}"
+    permission: private
+    storage_class: "DEEP_ARCHIVE"
