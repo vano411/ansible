@@ -19,19 +19,19 @@
 
     - block:
       - name: Sync with S3 Bucket
-        import_roles:
+        import_role:
           name: s3sync
       when: s3syncvar == "Yes"
 
     - block:
       - name: Test the UPS
-        import_roles:
+        import_role:
           name: upstest
       when: upstest == "Yes"
 
     - block:
       - name: Reboot if necessary
-        import_roles:
+        import_role:
           name: rebooter
       when: rebootvar == "Yes"
 
