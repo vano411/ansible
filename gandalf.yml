@@ -5,13 +5,43 @@
   gather_facts: no
   become: true
   
-  roles:
-    - role: apt
-    - role: ups
-      when: upstest == "Yes"
-    - role: snapraid
+  tasks:
+    - block:
+      - name: Run Apt Updates
+        import_role:
+          name: apt
+      
+    - block:
+      - name: Run SnapRAID Tasks
+        import_role:
+          name: snapraid
       when: arraysync == "Yes" or arrayscrub == "Yes"
-    - role: rebooter
-      when: rebootvar == "Yes"
-    - role: s3sync
+
+    - block:
+      - name: Sync with S3 Bucket
+        import_roles:
+          name: s3sync
       when: s3syncvar == "Yes"
+
+    - block:
+      - name: Test the UPS
+        import_roles:
+          name: upstest
+      when: upstest == "Yes"
+
+    - block:
+      - name: Reboot if necessary
+        import_roles:
+          name: rebooter
+      when: rebootvar == "Yes"
+
+      rescue:
+        - name: Send failure email
+          mail:
+            host: smtp.example.com
+            port: 587
+            username: your_user
+            password: your_pass
+            to: ops-team@example.com
+            subject: "Ansible Playbook Failed"
+            body: "One of the roles (role_one, role_two, or role_three) failed."
