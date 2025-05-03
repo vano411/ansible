@@ -7,33 +7,29 @@
   
   tasks:
     - block:
-      - name: Run Apt Updates
-        import_role:
-          name: apt
-      
-    - block:
-      - name: Run SnapRAID Tasks
-        import_role:
-          name: snapraid
-      when: arraysync == "Yes" or arrayscrub == "Yes"
+        - name: Run Apt Updates
+          import_role:
+            name: apt
 
-    - block:
-      - name: Sync with S3 Bucket
-        import_role:
-          name: s3sync
-      when: s3syncvar == "Yes"
+        - name: Run SnapRAID Tasks
+          import_role:
+            name: snapraid
+          when: arraysync == "Yes" or arrayscrub == "Yes"
 
-    - block:
-      - name: Test the UPS
-        import_role:
-          name: upstest
-      when: upstest == "Yes"
+        - name: Sync with S3 Bucket
+          import_role:
+            name: s3sync
+          when: s3syncvar == "Yes"
 
-    - block:
-      - name: Reboot if necessary
-        import_role:
-          name: rebooter
-      when: rebootvar == "Yes"
+        - name: Test the UPS
+          import_role:
+            name: upstest
+          when: upstest == "Yes"
+
+        - name: Reboot if necessary
+          import_role:
+            name: rebooter
+          when: rebootvar == "Yes"
 
       rescue:
         - name: Send failure email
@@ -44,4 +40,4 @@
             password: your_pass
             to: ops-team@example.com
             subject: "Ansible Playbook Failed"
-            body: "One of the roles (role_one, role_two, or role_three) failed."
+            body: "One of the roles (apt, snapraid, s3sync, upstest, rebooter) failed."
