@@ -6,5 +6,20 @@
   wait_for:
     timeout: 60
 
-- name: Print UPS status and last test results (check stdout)
-  command: /usr/sbin/pwrstat -status
+- name: Print UPS status and last test results to file
+  command: /usr/sbin/pwrstat -status > /home/van/ups_status.txt
+
+- name: Slurp the file
+  slurp:
+    src: /home/van/ups_status.txt
+  register: ups_status
+
+- name: Mail the file
+  mail:
+    host: smtp.example.com
+    port: 587
+    username: your_user
+    password: your_pass
+    to: ops-team@example.com
+    subject: "UPS Status"
+    body: "{{ ups_status.content | b64decode }}"
